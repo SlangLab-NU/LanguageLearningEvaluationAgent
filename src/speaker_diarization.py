@@ -31,19 +31,32 @@ class AudioDiarizer:
     def __init__(
         self,
         hf_token: Optional[str] = None,
-        device: Optional[str] = None
+        device: Optional[torch.device] = None
     ) -> None:
         """Initialize the AudioDiarizer.
         
         Args:
             hf_token: HuggingFace token for accessing pyannote.audio
-            device: Device to run the model on ('cuda' or 'cpu')
+            device: Device to run the model on (torch.device)
         """
-        self.device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
-        self.pipeline = Pipeline.from_pretrained(
-            "pyannote/speaker-diarization@2.1",
-            use_auth_token=hf_token
-        ).to(self.device)
+        if hf_token is None:
+            raise ValueError(
+                "HuggingFace token is required. Please visit https://huggingface.co/pyannote/speaker-diarization "
+                "to accept the user conditions and get your token from https://huggingface.co/settings/tokens"
+            )
+            
+        self.device = device or (torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'))
+        logger.info(f"Using device: {self.device}")
+        
+        try:
+            self.pipeline = Pipeline.from_pretrained(
+                "pyannote/speaker-diarization@2.1",
+                use_auth_token=hf_token
+            ).to(self.device)
+            logger.info("Successfully loaded speaker diarization pipeline")
+        except Exception as e:
+            logger.error(f"Failed to load pipeline: {str(e)}")
+            raise
         
     def load_audio(self, file_path: str) -> Tuple[torch.Tensor, int]:
         """Load audio file and convert to mono.
@@ -153,19 +166,22 @@ class AudioDiarizer:
 def main() -> None:
     """Main function to demonstrate usage."""
     # Example usage
-    audio_path = "data/recordings_wav/P001-com.oculus.vrshell-20240807-093454.wav"
+    audio_path = "../data/recordings_wav/P001-com.oculus.vrshell-20240807-093454.wav"
     
-    # Initialize diarizer (requires HuggingFace token)
-    diarizer = AudioDiarizer(hf_token="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")
-    
-    # Perform diarization
-    segments = diarizer.diarize(audio_path)
-    
-    # Print results
-    for speaker, speaker_segments in segments.items():
-        print(f"\nSpeaker {speaker}:")
-        for segment in speaker_segments:
-            print(f"  {segment.start:.2f}s - {segment.end:.2f}s (confidence: {segment.confidence:.2f})")
+    try:
+        # Initialize diarizer (requires HuggingFace token)
+        diarizer = AudioDiarizer(hf_token="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")  # Replace with your token
+        
+        # Perform diarization
+        segments = diarizer.diarize(audio_path)
+        
+        # Print results
+        for speaker, speaker_segments in segments.items():
+            print(f"\nSpeaker {speaker}:")
+            for segment in speaker_segments:
+                print(f"  {segment.start:.2f}s - {segment.end:.2f}s (confidence: {segment.confidence:.2f})")
+    except Exception as e:
+        logger.error(f"Error during diarization: {str(e)}")
 
 if __name__ == "__main__":
     main() 

@@ -1,0 +1,26 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	  {
+		"name": "debugpy: Python: Attach 5670",
+		"type": "debugpy",
+		"request": "attach",
+		"connect": {
+		  "host": "localhost",
+		  "port": 5670
+		},
+		"justMyCode": true,
+		"postDebugTask": "terminatePythonProcesses"
+	  },
+	  {
+		"name": "Debug without shell",
+		"type": "debugpy",
+		"python": "/home/osx/anaconda3/bin/python",
+		"request": "launch",
+		"program": "${file}",
+		"console": "integratedTerminal",
+		"justMyCode": true,
+		"env": {"PYTHONPATH": "${workspaceRoot}"},
+	  }
+	]
+  }
