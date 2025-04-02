@@ -11,35 +11,33 @@ def main():
     # Create evaluator instance
     evaluator = CoherenceEvaluator()
     
-    # Sample text with different coherence scenarios
+    # Sample texts with different coherence levels
     sample_text = """
-    The process of photosynthesis is essential for life on Earth. 
-    During this process, plants convert light energy into chemical energy. 
-    This energy is stored in the form of glucose, which serves as food for the plant. 
-    Additionally, photosynthesis produces oxygen as a byproduct, which is crucial for most living organisms.
-    The weather was nice yesterday, and I went for a walk in the park.
+    User: I've been working on implementing a sophisticated machine learning algorithm that demonstrates comprehensive understanding of neural networks. The analytical approach to data processing has yielded remarkable results while maintaining computational efficiency.
+    
+    NPC: That's fascinating! Could you tell me more about the specific techniques you're using?
+    
+    User: Certainly! The model's performance is consistently robust across various datasets, showcasing its adaptability and reliability. I've developed an innovative methodology that has significantly advanced the field, while the theoretical framework provides a solid foundation for future developments.
+    
+    NPC: How do you handle different types of data inputs?
+    
+    User: We've implemented a flexible preprocessing pipeline that can handle diverse data formats. The system employs advanced feature extraction techniques and adaptive learning rates, which have proven particularly effective in real-world applications.
     """
     
-    print("Evaluating text for coherence:")
-    print("-" * 50)
-    print(sample_text)
+    print("Evaluating texts for coherence:")
     print("-" * 50)
     
-    # Run evaluation
+    # Run evaluation for each sample text
+
     result = evaluator.evaluate(sample_text)
     
     # Print results
     print("\nEvaluation Results:")
-    print("-" * 50)
-    print(f"Overall Coherence Score: {result['overall_score']}")
-    print("\nCriterion Scores:")
-    for criterion, score in result['criterion_scores'].items():
-        print(f"- {criterion}: {'Pass' if score else 'Fail'}")
+    print("-" * 30)
+    print(f"CEFR Level: {result['cefr_level']}")
     print("\nReasoning:")
-    for criterion, reasoning in result['reasoning'].items():
-        print(f"- {criterion}: {reasoning}")
-    print("\nSummary:")
-    print(result['summary'])
+    print(result['reasoning'])
+    print("-" * 50)
 
 if __name__ == "__main__":
     main() 

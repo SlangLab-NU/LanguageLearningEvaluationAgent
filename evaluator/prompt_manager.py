@@ -84,51 +84,56 @@ class EvaluationType(BasePrompt):
             "  - location (string): The specific text segment containing the error\n"
             "  - correction (string): The corrected version\n"
             "  - explanation (string): Brief explanation of the error\n"
-            "- summary (string): Overall assessment of the text's grammatical quality\n"
+            "- cefr_level (string): The assessed CEFR level (C2, C1, B2, B1, A2, A1)\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen\n"
             "Example:\n"
             "```json\n"
-            '{"errors": [{"category": "1. Subject-Verb Agreement", "location": "The team are playing", "correction": "The team is playing", "explanation": "Collective noun requires singular verb"}], "summary": "The text has one major grammatical error related to subject-verb agreement."}\n'
+            '{"errors": [{"category": "1. Subject-Verb Agreement", "location": "The team are playing", "correction": "The team is playing", "explanation": "Collective noun requires singular verb"}], "cefr_level": "B2", "reasoning": "Shows a relatively high degree of grammatical control. Does not make errors which cause misunderstanding, and can correct most of his/her mistakes."}\n'
             "```"
         )
     }
     
     COHERENCE_EVALUATION = {
         'template': (
-            "Evaluate the coherence of the given text based on the following criteria:\n"
+            "Evaluate the coherence of the given text and determine its CEFR level based on the following criteria:\n"
             "Text to evaluate: {text}\n\n"
-            "Evaluation Criteria:\n{criteria}\n\n"
-            "Please analyze the text and provide scores and reasoning for each criterion.\n"
+            "CEFR Coherence Criteria:\n{criteria}\n\n"
+            "Please analyze the text and determine which CEFR level best describes the coherence demonstrated.\n"
             "{formatter}"
         ),
         'criteria': (
-            "1. Completeness\n"
-            "   - Does the text fully address the topic or question?\n"
-            "   - Are all necessary components present?\n"
-            "   - Is there any missing information?\n\n"
-            "2. Relevance\n"
-            "   - Are all parts of the text related to the main topic?\n"
-            "   - Is there any irrelevant information?\n"
-            "   - Does each part contribute meaningfully?\n\n"
-            "3. Logical Flow\n"
-            "   - Is the information organized in a logical sequence?\n"
-            "   - Are transitions between ideas smooth?\n"
-            "   - Does the text progress naturally?\n"
+            "C2 Level:\n"
+            "- Can create coherent and cohesive discourse making full and appropriate use of a variety of organisational patterns\n"
+            "- Can use a wide range of connectors and other cohesive devices effectively\n"
+            "- Demonstrates sophisticated control over discourse structure\n\n"
+            "C1 Level:\n"
+            "- Can produce clear, smoothly-flowing, well-structured speech\n"
+            "- Shows controlled use of organisational patterns\n"
+            "- Uses connectors and cohesive devices effectively\n\n"
+            "B2 Level:\n"
+            "- Can use a limited number of cohesive devices to link utterances into clear, coherent discourse\n"
+            "- May show some \"jumpiness\" in longer contributions\n"
+            "- Maintains basic coherence across the text\n\n"
+            "B1 Level:\n"
+            "- Can link a series of shorter, discrete simple elements into a connected sequence\n"
+            "- Uses basic connectors to create linear sequences of points\n"
+            "- Shows basic coherence in shorter texts\n\n"
+            "A2 Level:\n"
+            "- Can link groups of words with simple connectors like \"and\", \"but\" and \"because\"\n"
+            "- Shows limited coherence in very short texts\n"
+            "- Uses basic connectors appropriately\n\n"
+            "A1 Level:\n"
+            "- Can link words or groups of words with very basic linear connectors like \"and\" or \"then\"\n"
+            "- Shows minimal coherence\n"
+            "- Limited use of connectors"
         ),
         'formatter': (
             "Respond ONLY with a JSON object containing:\n"
-            "- overall_score (float): A score between 0 and 1 representing overall coherence\n"
-            "- criterion_scores (object): Boolean scores for each criterion\n"
-            "  - completeness (bool): Whether the text is complete\n"
-            "  - relevance (bool): Whether the text is relevant\n"
-            "  - logical_flow (bool): Whether the text has logical flow\n"
-            "- reasoning (object): Detailed reasoning for each criterion\n"
-            "  - completeness_reasoning (string): Explanation of completeness score\n"
-            "  - relevance_reasoning (string): Explanation of relevance score\n"
-            "  - logical_flow_reasoning (string): Explanation of logical flow score\n"
-            "- summary (string): Overall assessment of the text's coherence\n"
+            "- cefr_level (string): The assessed CEFR level (A1, A2, B1, B2, C1, C2)\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen, focusing on coherence features\n"
             "Example:\n"
             "```json\n"
-            '{"overall_score": 0.85, "criterion_scores": {"completeness": true, "relevance": true, "logical_flow": false}, "reasoning": {"completeness_reasoning": "The text fully addresses the topic and includes all necessary components", "relevance_reasoning": "All parts are related to the main topic", "logical_flow_reasoning": "The text lacks clear transitions between ideas"}, "summary": "The text is mostly coherent but could benefit from better organization and transitions."}\n'
+            '{"cefr_level": "B2", "reasoning": "The text demonstrates B2-level coherence with appropriate use of cohesive devices, though there are some minor inconsistencies in longer sections. The overall structure is clear but could benefit from more sophisticated connectors."}\n'
             "```"
         )
     }
@@ -187,6 +192,113 @@ class EvaluationType(BasePrompt):
             "Example:\n"
             "```json\n"
             '{"overall_score": 0.85, "criterion_scores": {"word_variety": 0.9, "word_level": 0.8, "word_choice": 0.85, "collocations": 0.8, "academic_vocab": 0.85}, "reasoning": {"word_variety_reasoning": "Good mix of vocabulary with minimal repetition", "word_level_reasoning": "Appropriate use of advanced vocabulary", "word_choice_reasoning": "Words chosen with precision", "collocations_reasoning": "Natural word combinations", "academic_vocab_reasoning": "Domain-specific terms used appropriately"}, "vocabulary_features": {"unique_words": 150, "total_words": 200, "advanced_words": ["sophisticated", "comprehensive", "analytical"], "repeated_words": ["important"]}, "summary": "The text demonstrates strong vocabulary usage with good variety and appropriate word choices."}\n'
+            "```"
+        )
+    }
+
+    INTERACTION_EVALUATION = {
+        'template': (
+            "Evaluate the interaction skills in the given conversation and determine its CEFR level:\n"
+            "Conversation to evaluate: {text}\n\n"
+            "CEFR Interaction Criteria:\n{criteria}\n\n"
+            "Please analyze the conversation and determine which CEFR level best describes the interaction skills demonstrated.\n"
+            "{formatter}"
+        ),
+        'criteria': (
+            "C2 Level:\n"
+            "- Can interact with ease and skill\n"
+            "- Picks up and uses non-verbal and intonational cues effortlessly\n"
+            "- Interweaves contribution into joint discourse naturally\n"
+            "- Demonstrates fully natural turn-taking\n"
+            "- Shows skillful referencing and allusion making\n\n"
+            "C1 Level:\n"
+            "- Can select suitable phrases for discourse functions\n"
+            "- Prefaces remarks appropriately to get/keep the floor\n"
+            "- Relates contributions skillfully to other speakers\n"
+            "- Shows good awareness of conversation flow\n\n"
+            "B2 Level:\n"
+            "- Can initiate discourse and take turns appropriately\n"
+            "- Can end conversations when needed\n"
+            "- Helps discussion along on familiar topics\n"
+            "- Confirms comprehension and invites others in\n\n"
+            "B1 Level:\n"
+            "- Can initiate, maintain and close simple face-to-face conversations\n"
+            "- Handles familiar or personally interesting topics\n"
+            "- Can repeat back to confirm mutual understanding\n"
+            "- Shows basic conversation management skills\n\n"
+            "A2 Level:\n"
+            "- Can answer questions and respond to simple statements\n"
+            "- Can indicate when following the conversation\n"
+            "- Limited ability to keep conversation going independently\n"
+            "- Basic interaction skills\n\n"
+            "A1 Level:\n"
+            "- Can ask and answer questions about personal details\n"
+            "- Can interact in a simple way\n"
+            "- Communication dependent on repetition and rephrasing\n"
+            "- Basic question-answer interaction"
+        ),
+        'formatter': (
+            "Respond ONLY with a JSON object containing:\n"
+            "- cefr_level (string): The assessed CEFR level (A1, A2, B1, B2, C1, C2)\n"
+            "- confidence_score (float): Confidence in the assessment (0-1)\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen\n"
+            "- key_features (array): List of key interaction features observed that support this level\n"
+            "- summary (string): Brief summary of the interaction assessment\n"
+            "Example:\n"
+            "```json\n"
+            '{"cefr_level": "B2", "confidence_score": 0.85, "reasoning": "The conversation demonstrates strong B2-level interaction skills, particularly in initiating discourse and managing turn-taking. While there are some sophisticated elements, the interaction lacks the natural flow and nuanced referencing typical of C1 level.", "key_features": ["Appropriate turn-taking", "Good topic management", "Clear conversation structure", "Effective comprehension checks"], "summary": "Strong B2-level interaction with clear structure and good turn management."}\n'
+            "```"
+        )
+    }
+
+    RANGE_EVALUATION = {
+        'template': (
+            "You are given a conversation between a User and an NPC. Evaluate the User's language range and determine their CEFR level:\n"
+            "Conversation to evaluate: {text}\n\n"
+            "CEFR Range Criteria:\n{criteria}\n\n"
+            "Please analyze the User's responses and determine which CEFR level best describes their language range. Ignore the NPC's responses.\n"
+            "{formatter}"
+        ),
+        'criteria': (
+            "C2 Level:\n"
+            "- Shows great flexibility reformulating ideas in differing linguistic forms\n"
+            "- Conveys finer shades of meaning precisely\n"
+            "- Gives emphasis and differentiates effectively\n"
+            "- Eliminates ambiguity\n"
+            "- Has a good command of idiomatic expressions and colloquialisms\n\n"
+            "C1 Level:\n"
+            "- Has a good command of a broad range of language\n"
+            "- Can select formulations to express clearly in appropriate style\n"
+            "- Covers a wide range of general, academic, professional or leisure topics\n"
+            "- No significant restriction in what they want to say\n\n"
+            "B2 Level:\n"
+            "- Has sufficient range to give clear descriptions\n"
+            "- Can express viewpoints on most general topics\n"
+            "- Uses some complex sentence forms\n"
+            "- Minimal searching for words\n\n"
+            "B1 Level:\n"
+            "- Has enough language to get by\n"
+            "- Sufficient vocabulary for basic topics (family, hobbies, work, travel)\n"
+            "- May show hesitation and use circumlocutions\n"
+            "- Limited to familiar topics\n\n"
+            "A2 Level:\n"
+            "- Uses basic sentence patterns\n"
+            "- Relies on memorized phrases and formulae\n"
+            "- Limited to simple everyday situations\n"
+            "- Communicates basic information only\n\n"
+            "A1 Level:\n"
+            "- Has a very basic repertoire of words\n"
+            "- Uses simple phrases\n"
+            "- Limited to personal details and concrete situations\n"
+            "- Minimal language range"
+        ),
+        'formatter': (
+            "Respond ONLY with a JSON object containing:\n"
+            "- cefr_level (string): The assessed CEFR level (A1, A2, B1, B2, C1, C2)\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen, focusing on the User's language range\n"
+            "Example:\n"
+            "```json\n"
+            '{"cefr_level": "C1", "reasoning": "The User demonstrates a broad range of language with sophisticated vocabulary and complex sentence structures. They show ability to express ideas clearly across multiple topics without restriction, though lack the nuanced flexibility and idiomatic mastery typical of C2 level."}\n'
             "```"
         )
     }

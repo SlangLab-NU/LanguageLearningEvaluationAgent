@@ -88,25 +88,41 @@ class TranscriptReader:
         if self.df is None:
             self.load_data()
         return '\n'.join(self.get_npc_messages())
-    
+
+    def get_conversation_string(self) -> str:
+        """
+        Get the entire conversation formatted as alternating User and NPC messages.
+        
+        Returns:
+            str: Formatted conversation string with User and NPC messages alternating
+                 in the format:
+                 User: <message>
+                 NPC: <response>
+                 ...
+        """
+        if self.df is None:
+            self.load_data()
+            
+        conversation_parts = []
+        for _, row in self.df.iterrows():
+            user_msg = f"User: {row['Message']}"
+            npc_msg = f"NPC: {self._clean_npc_message(row['NPC Response'])}"
+            conversation_parts.extend([user_msg, npc_msg])
+            
+        return '\n'.join(conversation_parts)
+
+
 
 # Example usage
 reader = TranscriptReader("../data/transcripts/c2.csv")
 
-# Get all messages
-messages = reader.get_messages()
-print(messages)
+# # Get all messages
+# messages = reader.get_messages()
+# print(messages)
 
-# Get all messages as a single string
-all_messages = reader.get_all_messages_string()
-print(all_messages)
+# # Get all messages as a single string
+# all_messages = reader.get_all_messages_string()
+# print(all_messages)
 
-# Get all NPC messages
-npc_messages = reader.get_npc_messages()
-print("\nNPC Messages:")
-print(npc_messages)
-
-# Get all NPC messages as a single string
-all_npc_messages = reader.get_all_npc_messages_string()
-print("\nAll NPC Messages as string:")
-print(all_npc_messages)
+conversation = reader.get_conversation_string()
+print(conversation)
