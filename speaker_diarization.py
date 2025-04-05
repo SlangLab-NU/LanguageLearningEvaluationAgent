@@ -95,9 +95,9 @@ def process_audio(
         print("Warning: No Hugging Face token provided. Diarization may fail.")
         print("Please visit https://huggingface.co/pyannote/speaker-diarization-3.1")
         print("to accept the user agreement and get your token from https://huggingface.co/settings/tokens")
-    
+    # print(f'hf_token: {hf_token}')
     diarize_model = whisperx.DiarizationPipeline(
-        use_auth_token=hf_token, 
+        use_auth_token="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", 
         device=device
     )
     
@@ -153,9 +153,6 @@ def main():
     
     args = parser.parse_args()
     
-    # Get Hugging Face token from environment if not provided
-    hf_token = args.hf_token or os.environ.get("HF_TOKEN")
-    
     result = process_audio(
         audio_path=args.audio_path,
         output_dir=args.output_dir,
@@ -165,7 +162,7 @@ def main():
         batch_size=args.batch_size,
         min_speakers=args.min_speakers,
         max_speakers=args.max_speakers,
-        hf_token=hf_token,
+        hf_token=args.hf_token,
         language=args.language,
     )
     
