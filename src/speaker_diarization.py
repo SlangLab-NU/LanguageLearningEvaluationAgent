@@ -13,6 +13,10 @@ import whisperx
 import argparse
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def process_audio(
     audio_path: str,
@@ -38,7 +42,7 @@ def process_audio(
         batch_size: Batch size for inference
         min_speakers: Minimum number of speakers
         max_speakers: Maximum number of speakers
-        hf_token: Hugging Face token for accessing PyAnnote models
+        hf_token: Hugging Face token for accessing PyAnnote models (optional, will use HF_TOKEN from .env if not provided)
         language: Language code for transcription
         
     Returns:
@@ -91,13 +95,17 @@ def process_audio(
     
     # 3. Perform speaker diarization
     print("Performing speaker diarization...")
-    if hf_token is None:
-        print("Warning: No Hugging Face token provided. Diarization may fail.")
-        print("Please visit https://huggingface.co/pyannote/speaker-diarization-3.1")
-        print("to accept the user agreement and get your token from https://huggingface.co/settings/tokens")
-    # print(f'hf_token: {hf_token}')
+    # Get token from environment variable if not provided
+    hf_token = hf_token or os.getenv("HF_TOKEN")
+    if not hf_token:
+        raise ValueError(
+            "No Hugging Face token provided. Please set HF_TOKEN in your .env file or provide it via --hf_token argument. "
+            "Visit https://huggingface.co/pyannote/speaker-diarization-3.1 to accept the user agreement "
+            "and get your token from https://huggingface.co/settings/tokens"
+        )
+        
     diarize_model = whisperx.DiarizationPipeline(
-        use_auth_token="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", 
+        use_auth_token=hf_token, 
         device=device
     )
     
