@@ -27,7 +27,7 @@ def process_audio(
     min_speakers: int = 2,
     max_speakers: int = 2,
     hf_token: Optional[str] = None,
-    language: Optional[str] = None,
+    language: str = "en",  # Default to English
 ) -> Dict:
     """
     Process audio file with WhisperX for transcription and speaker diarization.
@@ -42,7 +42,7 @@ def process_audio(
         min_speakers: Minimum number of speakers
         max_speakers: Maximum number of speakers
         hf_token: Hugging Face token for accessing PyAnnote models (optional, will use HF_TOKEN from .env if not provided)
-        language: Language code for transcription
+        language: Language code for transcription (default: "en" for English)
         
     Returns:
         Dictionary containing transcription and diarization results
@@ -63,9 +63,8 @@ def process_audio(
     # Load audio
     audio = whisperx.load_audio(audio_path)
     
-    # Transcribe
-    result = model.transcribe(audio, batch_size=batch_size)
-    print(f"Detected language: {result['language']}")
+    # Transcribe with fixed language
+    result = model.transcribe(audio, batch_size=batch_size, language=language)
     
     # Free up GPU memory
     del model
@@ -75,7 +74,7 @@ def process_audio(
     # 2. Align whisper output
     print("Aligning transcription with audio...")
     model_a, metadata = whisperx.load_align_model(
-        language_code=language or result["language"], 
+        language_code=language,  # Always use English
         device=device
     )
     result = whisperx.align(
@@ -156,7 +155,7 @@ def main():
     parser.add_argument("--min_speakers", type=int, default=2, help="Minimum number of speakers")
     parser.add_argument("--max_speakers", type=int, default=2, help="Maximum number of speakers")
     parser.add_argument("--hf_token", type=str, help="Hugging Face token for accessing PyAnnote models")
-    parser.add_argument("--language", type=str, help="Language code for transcription")
+    parser.add_argument("--language", type=str, default="en", help="Language code for transcription (default: en)")
     
     args = parser.parse_args()
     

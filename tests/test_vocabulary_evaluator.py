@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 
-from evaluator.evaluators import VocabularyEvaluator
+from evaluator.evaluators import RangeEvaluator
 from dotenv import load_dotenv
 
 def main():
@@ -9,18 +9,22 @@ def main():
     load_dotenv()
     
     # Create evaluator instance
-    evaluator = VocabularyEvaluator()
+    evaluator = RangeEvaluator()
     
-    # Sample text with different vocabulary scenarios
+    # Sample conversation with different language range scenarios
     sample_text = """
-    The sophisticated implementation of the machine learning algorithm demonstrates 
-    comprehensive understanding of neural networks. The analytical approach to 
-    data processing yields remarkable results, while maintaining computational 
-    efficiency. The model's performance is consistently robust across various 
-    datasets, showcasing its adaptability and reliability.
+    User: I've been working on implementing a sophisticated machine learning algorithm that demonstrates comprehensive understanding of neural networks. The analytical approach to data processing has yielded remarkable results while maintaining computational efficiency.
+    
+    NPC: That's fascinating! Could you tell me more about the specific techniques you're using?
+    
+    User: Certainly! The model's performance is consistently robust across various datasets, showcasing its adaptability and reliability. I've developed an innovative methodology that has significantly advanced the field, while the theoretical framework provides a solid foundation for future developments.
+    
+    NPC: How do you handle different types of data inputs?
+    
+    User: We've implemented a flexible preprocessing pipeline that can handle diverse data formats. The system employs advanced feature extraction techniques and adaptive learning rates, which have proven particularly effective in real-world applications.
     """
     
-    print("Evaluating text for vocabulary usage:")
+    print("Evaluating conversation for User's language range:")
     print("-" * 50)
     print(sample_text)
     print("-" * 50)
@@ -31,25 +35,9 @@ def main():
     # Print results
     print("\nEvaluation Results:")
     print("-" * 50)
-    print(f"Overall Vocabulary Score: {result['overall_score']}")
-    
-    print("\nCriterion Scores:")
-    for criterion, score in result['criterion_scores'].items():
-        print(f"- {criterion}: {score:.2f}")
-    
+    print(f"CEFR Level: {result['cefr_level']}")
     print("\nReasoning:")
-    for criterion, reasoning in result['reasoning'].items():
-        print(f"- {criterion}: {reasoning}")
-    
-    print("\nVocabulary Features:")
-    features = result['vocabulary_features']
-    print(f"- Unique Words: {features['unique_words']}")
-    print(f"- Total Words: {features['total_words']}")
-    print(f"- Advanced Words: {', '.join(features['advanced_words'])}")
-    print(f"- Repeated Words: {', '.join(features['repeated_words'])}")
-    
-    print("\nSummary:")
-    print(result['summary'])
+    print(result['reasoning'])
 
 if __name__ == "__main__":
     main()
