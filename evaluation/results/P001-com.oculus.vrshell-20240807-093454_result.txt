@@ -1,0 +1,115 @@
+{
+  "grammar": {
+    "cefr_level": "B2",
+    "num_errors": 5,
+    "errors": [
+      {
+        "category": "1. Subject-Verb Agreement",
+        "location": "me and my family all went to the Washington",
+        "correction": "my family and I all went to Washington",
+        "explanation": "The pronoun 'I' should be used instead of 'me' as it is part of the subject of the sentence. Additionally, 'the' is unnecessary before 'Washington'."
+      },
+      {
+        "category": "2. Tense Usage",
+        "location": "we haven't experienced bringing her to a long trip",
+        "correction": "we hadn't experienced bringing her on a long trip",
+        "explanation": "The past perfect tense 'hadn't' is more appropriate here to indicate that this experience occurred before another past event."
+      },
+      {
+        "category": "4. Preposition Usage",
+        "location": "it was memorable because it was the first time I took my daughter to a kind of like a far trip",
+        "correction": "it was memorable because it was the first time I took my daughter on a trip that was kind of far",
+        "explanation": "The correct preposition 'on' should be used for trips, and the phrase 'kind of like' is awkward in this context."
+      },
+      {
+        "category": "6. Modifier Placement",
+        "location": "a kind of like a far trip",
+        "correction": "a trip that was kind of far",
+        "explanation": "The placement of 'kind of' is awkward and should be rephrased for clarity."
+      },
+      {
+        "category": "12. Word Order",
+        "location": "whenever we haven't experienced bringing her to a long trip",
+        "correction": "we had never experienced bringing her on a long trip",
+        "explanation": "The word order should be adjusted for clarity and to use a more natural phrasing."
+      }
+    ],
+    "reasoning": "Shows a relatively high degree of grammatical control. Does not make errors which cause misunderstanding, and can correct most of his/her mistakes.",
+    "raw_output": {
+      "errors": [
+        {
+          "category": "1. Subject-Verb Agreement",
+          "location": "me and my family all went to the Washington",
+          "correction": "my family and I all went to Washington",
+          "explanation": "The pronoun 'I' should be used instead of 'me' as it is part of the subject of the sentence. Additionally, 'the' is unnecessary before 'Washington'."
+        },
+        {
+          "category": "2. Tense Usage",
+          "location": "we haven't experienced bringing her to a long trip",
+          "correction": "we hadn't experienced bringing her on a long trip",
+          "explanation": "The past perfect tense 'hadn't' is more appropriate here to indicate that this experience occurred before another past event."
+        },
+        {
+          "category": "4. Preposition Usage",
+          "location": "it was memorable because it was the first time I took my daughter to a kind of like a far trip",
+          "correction": "it was memorable because it was the first time I took my daughter on a trip that was kind of far",
+          "explanation": "The correct preposition 'on' should be used for trips, and the phrase 'kind of like' is awkward in this context."
+        },
+        {
+          "category": "6. Modifier Placement",
+          "location": "a kind of like a far trip",
+          "correction": "a trip that was kind of far",
+          "explanation": "The placement of 'kind of' is awkward and should be rephrased for clarity."
+        },
+        {
+          "category": "12. Word Order",
+          "location": "whenever we haven't experienced bringing her to a long trip",
+          "correction": "we had never experienced bringing her on a long trip",
+          "explanation": "The word order should be adjusted for clarity and to use a more natural phrasing."
+        }
+      ],
+      "cefr_level": "B1",
+      "reasoning": "The speaker demonstrates a basic ability to communicate but makes several grammatical errors that may affect clarity. The use of past tenses is mostly maintained, but the presence of errors indicates a B1 level, where the speaker can communicate in familiar situations but may struggle with more complex structures."
+    }
+  },
+  "coherence": {
+    "cefr_level": "B1",
+    "reasoning": "The text demonstrates B1-level coherence as it links a series of shorter, discrete elements into a connected sequence. The speaker maintains a basic coherence throughout the conversation but relies on simple connectors and occasionally presents some jumpiness in longer contributions. While the overall structure is clear, the use of more advanced cohesive devices and organizational patterns is limited.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "reasoning": "The text demonstrates B1-level coherence as it links a series of shorter, discrete elements into a connected sequence. The speaker maintains a basic coherence throughout the conversation but relies on simple connectors and occasionally presents some jumpiness in longer contributions. While the overall structure is clear, the use of more advanced cohesive devices and organizational patterns is limited."
+    }
+  },
+  "range": {
+    "cefr_level": "B1",
+    "reasoning": "The User's responses indicate an intermediate level of proficiency. They possess enough language to communicate basic ideas and experiences, such as describing a trip and discussing their cultural background. However, their speech exhibits some hesitation, with occasional grammatical errors and a lack of complex sentence structures. While they can convey their thoughts, there is evidence of searching for words and using simpler expressions, which aligns with the B1 level descriptors.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "reasoning": "The User's responses indicate an intermediate level of proficiency. They possess enough language to communicate basic ideas and experiences, such as describing a trip and discussing their cultural background. However, their speech exhibits some hesitation, with occasional grammatical errors and a lack of complex sentence structures. While they can convey their thoughts, there is evidence of searching for words and using simpler expressions, which aligns with the B1 level descriptors."
+    }
+  },
+  "interaction": {
+    "cefr_level": "B1",
+    "confidence_score": 0.8,
+    "reasoning": "The conversation displays B1-level interaction skills as the speakers are able to initiate, maintain, and close simple conversations on familiar topics. Speaker 01 effectively shares personal experiences, while Speaker 00 demonstrates good engagement by asking follow-up questions and providing feedback. Although the interaction flows reasonably well, there are instances where the conversation lacks sophistication and organization, indicative of B1 rather than higher levels.",
+    "key_features": [
+      "Initiation and maintenance of conversation",
+      "Engagement through follow-up questions",
+      "Ability to handle familiar topics",
+      "Use of simple past tense with minor errors"
+    ],
+    "summary": "The interaction showcases B1-level skills with effective topic management and basic conversation flow.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "confidence_score": 0.8,
+      "reasoning": "The conversation displays B1-level interaction skills as the speakers are able to initiate, maintain, and close simple conversations on familiar topics. Speaker 01 effectively shares personal experiences, while Speaker 00 demonstrates good engagement by asking follow-up questions and providing feedback. Although the interaction flows reasonably well, there are instances where the conversation lacks sophistication and organization, indicative of B1 rather than higher levels.",
+      "key_features": [
+        "Initiation and maintenance of conversation",
+        "Engagement through follow-up questions",
+        "Ability to handle familiar topics",
+        "Use of simple past tense with minor errors"
+      ],
+      "summary": "The interaction showcases B1-level skills with effective topic management and basic conversation flow."
+    }
+  }
+}
