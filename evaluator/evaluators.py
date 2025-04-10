@@ -284,3 +284,60 @@ class InteractionEvaluator(ConversationEvaluator):
                 "raw_output": response_text,
             }
 
+
+class FluencyEvaluator(ConversationEvaluator):
+    """
+    Evaluates the fluency of text based on CEFR levels, focusing on the ability to express
+    oneself with a natural flow, minimal pausing, and appropriate tempo.
+    """
+
+    def __init__(self, llm_class: type[LLMClient] = None, **llm_kwargs):
+        super().__init__(llm_class, **llm_kwargs)
+
+    def pre_process(
+        self,
+        script: str | List[str],
+        **kwargs,
+    ) -> str:
+        # Extract fluency metrics from kwargs if provided, otherwise use defaults
+        pause_frequency = kwargs.get("pause_frequency", "Not provided")
+        avg_pause_duration = kwargs.get("avg_pause_duration", "Not provided")
+        speaking_rate = kwargs.get("speaking_rate", "Not provided")
+        
+        return EvalPromptManager().build_prompt(
+            script=script,
+            eval_type=EvaluationType.FLUENCY_EVALUATION,
+            text=script,  # The text to evaluate is the script
+            pause_frequency=pause_frequency,
+            avg_pause_duration=avg_pause_duration,
+            speaking_rate=speaking_rate,
+        )
+
+    def call_llm(self, processed_data: str) -> str:
+        return self.llm.generate(processed_data)
+
+    def post_process(self, llm_response: str, **kwargs) -> Dict[str, Any]:
+        """Parse JSON response into scores dictionary"""
+        try:
+            # Clean response and parse JSON
+            response_text = (
+                llm_response.strip().replace("```json", "").replace("```", "")
+            )
+            result = json.loads(response_text)
+            
+            scores = {
+                "cefr_level": result.get("cefr_level", "A1"),
+                "reasoning": result.get("reasoning", ""),
+                "raw_output": result
+            }
+            
+            return scores
+
+        except (json.JSONDecodeError, KeyError) as e:
+            logger.error(f"Error processing fluency evaluation response: {e}")
+            return {
+                "cefr_level": "A1",
+                "reasoning": "Error processing response",
+                "raw_output": response_text,
+            }
+

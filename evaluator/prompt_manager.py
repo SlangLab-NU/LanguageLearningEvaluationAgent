@@ -9,7 +9,7 @@ class EvaluationType(BasePrompt):
     """Enumeration of different evaluation prompt types with JSON formatting"""
     GRAMMAR_EVALUATION = {
         'template': (
-            "Evaluate the given text for grammatical errors using the following error categories and examples as reference.\n"
+            "Evaluate grammatical errors of the User using the following error categories and examples as reference.\n"
             "Text to evaluate: {text}\n\n"
             "Error Categories and Examples:\n{criteria}\n\n"
             "Please analyze the text and identify any grammatical errors, categorizing them according to the provided categories.\n"
@@ -95,7 +95,7 @@ class EvaluationType(BasePrompt):
     
     COHERENCE_EVALUATION = {
         'template': (
-            "Evaluate the coherence of the given text and determine its CEFR level based on the following criteria:\n"
+            "Evaluate the coherence of the User and determine its CEFR level based on the following criteria:\n"
             "Text to evaluate: {text}\n\n"
             "CEFR Coherence Criteria:\n{criteria}\n\n"
             "Please analyze the text and determine which CEFR level best describes the coherence demonstrated.\n"
@@ -140,7 +140,7 @@ class EvaluationType(BasePrompt):
 
     VOCABULARY_EVALUATION = {
         'template': (
-            "Evaluate the vocabulary usage in the given text based on the following criteria:\n"
+            "Evaluate the vocabulary of the User based on the following criteria:\n"
             "Text to evaluate: {text}\n\n"
             "Evaluation Criteria:\n{criteria}\n\n"
             "Please analyze the text and provide scores and reasoning for each criterion.\n"
@@ -198,7 +198,7 @@ class EvaluationType(BasePrompt):
 
     INTERACTION_EVALUATION = {
         'template': (
-            "Evaluate the interaction skills in the given conversation and determine its CEFR level:\n"
+            "Evaluate the interaction skills of the User and determine its CEFR level:\n"
             "Conversation to evaluate: {text}\n\n"
             "CEFR Interaction Criteria:\n{criteria}\n\n"
             "Please analyze the conversation and determine which CEFR level best describes the interaction skills demonstrated.\n"
@@ -253,52 +253,104 @@ class EvaluationType(BasePrompt):
 
     RANGE_EVALUATION = {
         'template': (
-            "You are given a conversation between a User and an NPC. Evaluate the User's language range and determine their CEFR level:\n"
-            "Conversation to evaluate: {text}\n\n"
+            "Evaluate the language range of the User and determine its CEFR level:\n"
+            "Text to evaluate: {text}\n\n"
             "CEFR Range Criteria:\n{criteria}\n\n"
-            "Please analyze the User's responses and determine which CEFR level best describes their language range. Ignore the NPC's responses.\n"
+            "Please analyze the text and determine which CEFR level best describes the language range demonstrated.\n"
             "{formatter}"
         ),
         'criteria': (
             "C2 Level:\n"
-            "- Shows great flexibility reformulating ideas in differing linguistic forms\n"
-            "- Conveys finer shades of meaning precisely\n"
-            "- Gives emphasis and differentiates effectively\n"
-            "- Eliminates ambiguity\n"
-            "- Has a good command of idiomatic expressions and colloquialisms\n\n"
+            "- Has a good command of idiomatic expressions and colloquialisms\n"
+            "- Shows awareness of connotative levels of meaning\n"
+            "- Can vary formulation to avoid frequent repetition\n"
+            "- Demonstrates sophisticated vocabulary range\n\n"
             "C1 Level:\n"
-            "- Has a good command of a broad range of language\n"
-            "- Can select formulations to express clearly in appropriate style\n"
-            "- Covers a wide range of general, academic, professional or leisure topics\n"
-            "- No significant restriction in what they want to say\n\n"
+            "- Has a good range of vocabulary for matters relating to their field\n"
+            "- Can vary formulation to avoid frequent repetition\n"
+            "- Shows good command of idiomatic expressions and colloquialisms\n"
+            "- Demonstrates broad vocabulary range\n\n"
             "B2 Level:\n"
-            "- Has sufficient range to give clear descriptions\n"
-            "- Can express viewpoints on most general topics\n"
-            "- Uses some complex sentence forms\n"
-            "- Minimal searching for words\n\n"
+            "- Has sufficient vocabulary to express him/herself with some circumlocutions\n"
+            "- Shows good range of vocabulary for matters related to their field\n"
+            "- Can use some idiomatic expressions\n"
+            "- Demonstrates adequate vocabulary range\n\n"
             "B1 Level:\n"
-            "- Has enough language to get by\n"
-            "- Sufficient vocabulary for basic topics (family, hobbies, work, travel)\n"
-            "- May show hesitation and use circumlocutions\n"
-            "- Limited to familiar topics\n\n"
+            "- Has enough vocabulary to express him/herself with some circumlocutions\n"
+            "- Shows good range of vocabulary for matters related to their field\n"
+            "- Can use some idiomatic expressions\n"
+            "- Demonstrates basic vocabulary range\n\n"
             "A2 Level:\n"
-            "- Uses basic sentence patterns\n"
-            "- Relies on memorized phrases and formulae\n"
-            "- Limited to simple everyday situations\n"
-            "- Communicates basic information only\n\n"
+            "- Has sufficient vocabulary for routine tasks\n"
+            "- Shows good range of vocabulary for matters related to their field\n"
+            "- Can use some idiomatic expressions\n"
+            "- Demonstrates limited vocabulary range\n\n"
             "A1 Level:\n"
-            "- Has a very basic repertoire of words\n"
-            "- Uses simple phrases\n"
-            "- Limited to personal details and concrete situations\n"
-            "- Minimal language range"
+            "- Has a basic range of simple phrases and sentences\n"
+            "- Shows limited vocabulary range\n"
+            "- Can use some basic idiomatic expressions\n"
+            "- Demonstrates very limited vocabulary range"
         ),
         'formatter': (
             "Respond ONLY with a JSON object containing:\n"
             "- cefr_level (string): The assessed CEFR level (A1, A2, B1, B2, C1, C2)\n"
-            "- reasoning (string): Detailed explanation of why this CEFR level was chosen, focusing on the User's language range\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen\n"
+            "- vocabulary_features (array): List of vocabulary features observed that support this level\n"
+            "- summary (string): Brief summary of the language range assessment\n"
             "Example:\n"
             "```json\n"
-            '{"cefr_level": "C1", "reasoning": "The User demonstrates a broad range of language with sophisticated vocabulary and complex sentence structures. They show ability to express ideas clearly across multiple topics without restriction, though lack the nuanced flexibility and idiomatic mastery typical of C2 level."}\n'
+            '{"cefr_level": "B2", "reasoning": "The text demonstrates B2-level language range with sufficient vocabulary to express ideas with some circumlocutions. While there is good use of idiomatic expressions, the vocabulary lacks the sophistication and nuance typical of C1 level.", "vocabulary_features": ["Good range of vocabulary", "Appropriate use of idiomatic expressions", "Some circumlocutions", "Field-specific terminology"], "summary": "Strong B2-level language range with good vocabulary variety."}\n'
+            "```"
+        )
+    }
+
+    FLUENCY_EVALUATION = {
+        'template': (
+            "Evaluate the fluency of the User and determine its CEFR level:\n"
+            "Text to evaluate: {text}\n\n"
+            "Additional metrics:\n"
+            "- Pause frequency: {pause_frequency}\n"
+            "- Average pause duration: {avg_pause_duration}\n"
+            "- Speaking rate: {speaking_rate}\n\n"
+            "CEFR Fluency Criteria:\n{criteria}\n\n"
+            "Please analyze the text and determine which CEFR level best describes the fluency demonstrated.\n"
+            "{formatter}"
+        ),
+        'criteria': (
+            "C2 Level:\n"
+            "- Can express him/herself spontaneously at length with a natural colloquial flow\n"
+            "- Avoids or backtracks around any difficulty so smoothly that the interlocutor is hardly aware of it\n"
+            "- Demonstrates effortless fluency with minimal pausing\n\n"
+            "C1 Level:\n"
+            "- Can express him/herself fluently and spontaneously, almost effortlessly\n"
+            "- Only a conceptually difficult subject can hinder a natural, smooth flow of language\n"
+            "- Shows high fluency with occasional strategic pausing\n\n"
+            "B2 Level:\n"
+            "- Can produce stretches of language with a fairly even tempo\n"
+            "- May be hesitant as he/she searches for patterns and expressions\n"
+            "- Shows few noticeably long pauses\n\n"
+            "B1 Level:\n"
+            "- Can keep going comprehensibly, even though pausing for grammatical and lexical planning and repair is very evident\n"
+            "- Especially noticeable in longer stretches of free production\n"
+            "- Shows moderate fluency with regular pausing\n\n"
+            "A2 Level:\n"
+            "- Can make him/herself understood in very short utterances\n"
+            "- Pauses, false starts and reformulation are very evident\n"
+            "- Shows limited fluency with frequent pausing\n\n"
+            "A1 Level:\n"
+            "- Can manage very short, isolated, mainly pre-packaged utterances\n"
+            "- Much pausing to search for expressions, to articulate less familiar words, and to repair communication\n"
+            "- Shows minimal fluency with extensive pausing"
+        ),
+        'formatter': (
+            "Respond ONLY with a JSON object containing:\n"
+            "- cefr_level (string): The assessed CEFR level (A1, A2, B1, B2, C1, C2)\n"
+            "- reasoning (string): Detailed explanation of why this CEFR level was chosen\n"
+            "- fluency_features (array): List of fluency features observed that support this level\n"
+            "- summary (string): Brief summary of the fluency assessment\n"
+            "Example:\n"
+            "```json\n"
+            '{"cefr_level": "B2", "reasoning": "The text demonstrates B2-level fluency with a fairly even tempo and few noticeably long pauses. While there is some hesitation when searching for expressions, the overall flow is maintained.", "fluency_features": ["Even tempo", "Few long pauses", "Occasional hesitation", "Comprehensible flow"], "summary": "Strong B2-level fluency with good flow and minimal disruption."}\n'
             "```"
         )
     }

@@ -1,0 +1,79 @@
+{
+  "grammar": {
+    "cefr_level": "C1",
+    "num_errors": 2,
+    "errors": [
+      {
+        "category": "4. Preposition Usage",
+        "location": "May I know your name please?",
+        "correction": "May I know your name, please?",
+        "explanation": "A comma is needed before 'please' for correct punctuation in this context."
+      },
+      {
+        "category": "3. Article Usage",
+        "location": "the north-eastern right now",
+        "correction": "the north-eastern region right now",
+        "explanation": "The phrase lacks clarity and specificity; 'region' should be included to make the reference clear."
+      }
+    ],
+    "reasoning": "Consistently maintains a high degree of grammatical accuracy; errors are rare, difficult to spot and generally corrected when they do occur.",
+    "raw_output": {
+      "errors": [
+        {
+          "category": "4. Preposition Usage",
+          "location": "May I know your name please?",
+          "correction": "May I know your name, please?",
+          "explanation": "A comma is needed before 'please' for correct punctuation in this context."
+        },
+        {
+          "category": "3. Article Usage",
+          "location": "the north-eastern right now",
+          "correction": "the north-eastern region right now",
+          "explanation": "The phrase lacks clarity and specificity; 'region' should be included to make the reference clear."
+        }
+      ],
+      "cefr_level": "B2",
+      "reasoning": "The text demonstrates a good command of grammar with minor errors that do not impede overall understanding. The speaker uses complex sentences and communicates effectively, which aligns with the B2 level."
+    }
+  },
+  "coherence": {
+    "cefr_level": "B1",
+    "reasoning": "The text shows B1-level coherence as it links shorter, discrete elements into a connected sequence, primarily through simple interactions. The dialogue maintains basic coherence, but the transitions between speakers and topics are somewhat abrupt, indicating limited complexity in discourse structure. The use of cohesive devices is basic, with minimal connectors, which aligns with the characteristics of B1 level.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "reasoning": "The text shows B1-level coherence as it links shorter, discrete elements into a connected sequence, primarily through simple interactions. The dialogue maintains basic coherence, but the transitions between speakers and topics are somewhat abrupt, indicating limited complexity in discourse structure. The use of cohesive devices is basic, with minimal connectors, which aligns with the characteristics of B1 level."
+    }
+  },
+  "range": {
+    "cefr_level": "B1",
+    "reasoning": "The User displays sufficient language to communicate in familiar topics but shows some hesitation and circumlocution, particularly in their phrasing. Their responses indicate basic conversational ability and an understanding of everyday situations, but they lack the complexity and range required for B2 or higher levels.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "reasoning": "The User displays sufficient language to communicate in familiar topics but shows some hesitation and circumlocution, particularly in their phrasing. Their responses indicate basic conversational ability and an understanding of everyday situations, but they lack the complexity and range required for B2 or higher levels."
+    }
+  },
+  "interaction": {
+    "cefr_level": "B1",
+    "confidence_score": 0.75,
+    "reasoning": "The conversation exhibits B1-level interaction skills, as the participants manage to initiate and maintain a simple exchange on familiar topics. They demonstrate basic conversation management through greetings and polite responses. However, the interaction lacks complexity and depth, with limited engagement in more nuanced discourse, which prevents it from reaching B2 level.",
+    "key_features": [
+      "Initiation of conversation with greetings",
+      "Ability to ask for and provide personal information",
+      "Polite exchanges and closing remarks",
+      "Basic turn-taking and response to questions"
+    ],
+    "summary": "The interaction reflects B1-level skills with basic conversational management and familiarity with simple topics.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "confidence_score": 0.75,
+      "reasoning": "The conversation exhibits B1-level interaction skills, as the participants manage to initiate and maintain a simple exchange on familiar topics. They demonstrate basic conversation management through greetings and polite responses. However, the interaction lacks complexity and depth, with limited engagement in more nuanced discourse, which prevents it from reaching B2 level.",
+      "key_features": [
+        "Initiation of conversation with greetings",
+        "Ability to ask for and provide personal information",
+        "Polite exchanges and closing remarks",
+        "Basic turn-taking and response to questions"
+      ],
+      "summary": "The interaction reflects B1-level skills with basic conversational management and familiarity with simple topics."
+    }
+  }
+}
