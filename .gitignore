@@ -182,3 +182,5 @@ CEFR-SP-thl/
 .vscode/
 out/
 results/
+*.txt
+*.json
