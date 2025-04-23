@@ -1,0 +1,16 @@
+corpus_path: ../CEFR-SP/SCoRE/CEFR-SP_SCoRE
+test_corpus_path: ../CEFR-SP/SCoRE/CEFR-SP_SCoRE
+pretrained_model: bert-base-cased
+with_ib: false
+attach_wlv: false
+num_labels: 6
+word_num_labels: 4
+alpha: 0.2
+batch_size: 128
+learning_rate: 1.0e-05
+warmup: 0
+lm_layer: 11
+problem_type: contrastive
+with_loss_weight: true
+num_prototypes: 3
+ib_beta: 1.0e-05

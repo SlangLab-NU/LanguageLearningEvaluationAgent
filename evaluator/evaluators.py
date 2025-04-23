@@ -341,3 +341,82 @@ class FluencyEvaluator(ConversationEvaluator):
                 "raw_output": response_text,
             }
 
+
+class CEFROverallEvaluator(ConversationEvaluator):
+    """
+    Provides a comprehensive CEFR evaluation by analyzing the results of individual evaluations:
+    - Grammar
+    - Coherence
+    - Range
+    - Interaction
+    - Fluency
+
+    This evaluator takes the results of other evaluators and provides a final holistic assessment.
+    """
+
+    def __init__(self, llm_class: type[LLMClient] = None, **llm_kwargs):
+        super().__init__(llm_class, **llm_kwargs)
+
+    def pre_process(
+        self,
+        evaluation_results: Dict[str, Any],
+        **kwargs,
+    ) -> str:
+        # Extract individual scores and their reasoning
+        grammar = evaluation_results.get("grammar", {})
+        coherence = evaluation_results.get("coherence", {})
+        range_eval = evaluation_results.get("range", {})
+        interaction = evaluation_results.get("interaction", {})
+        fluency = evaluation_results.get("fluency", {})
+
+        # Create a comprehensive prompt with all evaluation results
+        comprehensive_prompt = (
+            "Based on the following individual CEFR evaluations, provide a final holistic CEFR level assessment:\n\n"
+            f"1. Grammar: {grammar.get('cefr_level', 'N/A')}\n"
+            f"   Reasoning: {grammar.get('reasoning', 'N/A')}\n\n"
+            f"2. Coherence: {coherence.get('cefr_level', 'N/A')}\n"
+            f"   Reasoning: {coherence.get('reasoning', 'N/A')}\n\n"
+            f"3. Range: {range_eval.get('cefr_level', 'N/A')}\n"
+            f"   Reasoning: {range_eval.get('reasoning', 'N/A')}\n\n"
+            f"4. Interaction: {interaction.get('cefr_level', 'N/A')}\n"
+            f"   Reasoning: {interaction.get('reasoning', 'N/A')}\n\n"
+            f"5. Fluency: {fluency.get('cefr_level', 'N/A')}\n"
+            f"   Reasoning: {fluency.get('reasoning', 'N/A')}\n\n"
+            "Based on these evaluations, provide a holistic CEFR assessment.\n\n"
+            "Respond ONLY with a JSON object containing:\n"
+            "- cefr_level (string): The final CEFR level (A1, A2, B1, B2, C1, C2)\n"
+            "- reasoning (string): Detailed explanation of how the individual assessments contribute to the final level\n"
+            "Example:\n"
+            "```json\n"
+            '{"cefr_level": "B1", "reasoning": "While grammar shows B2 capability, the consistent B1 performance across coherence, range, interaction, and fluency indicates an overall B1 level. The speaker can communicate effectively on familiar topics with reasonable accuracy, though with limitations in complexity and sophistication."}\n'
+            "```"
+        )
+        
+        return comprehensive_prompt
+
+    def call_llm(self, processed_data: str) -> str:
+        return self.llm.generate(processed_data)
+
+    def post_process(self, llm_response: str, **kwargs) -> Dict[str, Any]:
+        """Parse JSON response into scores dictionary"""
+        try:
+            # Clean response and parse JSON
+            response_text = (
+                llm_response.strip().replace("```json", "").replace("```", "")
+            )
+            result = json.loads(response_text)
+            
+            return {
+                "cefr_level": result.get("cefr_level", "A1"),
+                "reasoning": result.get("reasoning", ""),
+                "raw_output": result
+            }
+
+        except (json.JSONDecodeError, KeyError) as e:
+            logger.error(f"Error processing overall CEFR evaluation response: {e}")
+            return {
+                "cefr_level": "A1",
+                "reasoning": "Error processing response",
+                "raw_output": response_text,
+            }
+

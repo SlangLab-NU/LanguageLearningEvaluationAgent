@@ -1,0 +1,125 @@
+{
+  "grammar": {
+    "cefr_level": "B2",
+    "num_errors": 5,
+    "errors": [
+      {
+        "category": "2. Tense Usage",
+        "location": "I currently studied computer science",
+        "correction": "I am currently studying computer science",
+        "explanation": "The present continuous tense should be used to indicate an ongoing action."
+      },
+      {
+        "category": "4. Preposition Usage",
+        "location": "this could give me strong capability to have this role",
+        "correction": "this could give me a strong capability for this role",
+        "explanation": "The preposition 'for' is more appropriate in this context to indicate purpose."
+      },
+      {
+        "category": "20. Punctuation",
+        "location": "and I have a lot of projects and I think this and I have a lot of skills like patency and",
+        "correction": "and I have a lot of projects. I think this, and I have a lot of skills like patience.",
+        "explanation": "The sentence is run-on and needs proper punctuation to separate distinct ideas and correct spelling 'patency' to 'patience'."
+      },
+      {
+        "category": "5. Pronoun Reference",
+        "location": "that I could dive in computer science as I used to be an industrial design student",
+        "correction": "that I could dive into computer science since I used to be an industrial design student",
+        "explanation": "The phrase 'dive into' is the correct idiomatic expression, and 'since' is better than 'as' for indicating a reason."
+      },
+      {
+        "category": "19. Negation",
+        "location": "I do not think that I am so good at design, so I hope to study something more like tech, the computer science",
+        "correction": "I do not think that I am very good at design, so I hope to study something more like technology, computer science",
+        "explanation": "Using 'very' instead of 'so' is more natural in this context, and 'technology' is the more common term."
+      }
+    ],
+    "reasoning": "Shows a relatively high degree of grammatical control. Does not make errors which cause misunderstanding, and can correct most of his/her mistakes.",
+    "raw_output": {
+      "errors": [
+        {
+          "category": "2. Tense Usage",
+          "location": "I currently studied computer science",
+          "correction": "I am currently studying computer science",
+          "explanation": "The present continuous tense should be used to indicate an ongoing action."
+        },
+        {
+          "category": "4. Preposition Usage",
+          "location": "this could give me strong capability to have this role",
+          "correction": "this could give me a strong capability for this role",
+          "explanation": "The preposition 'for' is more appropriate in this context to indicate purpose."
+        },
+        {
+          "category": "20. Punctuation",
+          "location": "and I have a lot of projects and I think this and I have a lot of skills like patency and",
+          "correction": "and I have a lot of projects. I think this, and I have a lot of skills like patience.",
+          "explanation": "The sentence is run-on and needs proper punctuation to separate distinct ideas and correct spelling 'patency' to 'patience'."
+        },
+        {
+          "category": "5. Pronoun Reference",
+          "location": "that I could dive in computer science as I used to be an industrial design student",
+          "correction": "that I could dive into computer science since I used to be an industrial design student",
+          "explanation": "The phrase 'dive into' is the correct idiomatic expression, and 'since' is better than 'as' for indicating a reason."
+        },
+        {
+          "category": "19. Negation",
+          "location": "I do not think that I am so good at design, so I hope to study something more like tech, the computer science",
+          "correction": "I do not think that I am very good at design, so I hope to study something more like technology, computer science",
+          "explanation": "Using 'very' instead of 'so' is more natural in this context, and 'technology' is the more common term."
+        }
+      ],
+      "cefr_level": "B2",
+      "reasoning": "The speaker demonstrates a solid grasp of English, exhibiting some grammatical errors typical of a B2 level. While they can communicate effectively and understand complex ideas, there are instances of awkward phrasing and minor grammatical errors that indicate room for improvement."
+    }
+  },
+  "coherence": {
+    "cefr_level": "B2",
+    "reasoning": "The text demonstrates B2-level coherence as it effectively uses a limited number of cohesive devices to link utterances and maintain clear discourse. While there are some instances of jumpiness and inconsistencies in sentence construction, the overall structure allows ideas to flow logically. The speaker is able to express thoughts clearly but occasionally struggles with complex sentence structures and transitions, indicating room for improvement.",
+    "raw_output": {
+      "cefr_level": "B2",
+      "reasoning": "The text demonstrates B2-level coherence as it effectively uses a limited number of cohesive devices to link utterances and maintain clear discourse. While there are some instances of jumpiness and inconsistencies in sentence construction, the overall structure allows ideas to flow logically. The speaker is able to express thoughts clearly but occasionally struggles with complex sentence structures and transitions, indicating room for improvement."
+    }
+  },
+  "range": {
+    "cefr_level": "B2",
+    "reasoning": "The User displays a sufficient range of vocabulary and the ability to give clear descriptions and express viewpoints on general topics. They can use some complex sentence forms, although there are instances of inconsistencies in sentence construction and verb tense usage. The User's responses indicate minimal searching for words and the ability to communicate ideas effectively, aligning with the B2 level criteria.",
+    "raw_output": {
+      "cefr_level": "B2",
+      "reasoning": "The User displays a sufficient range of vocabulary and the ability to give clear descriptions and express viewpoints on general topics. They can use some complex sentence forms, although there are instances of inconsistencies in sentence construction and verb tense usage. The User's responses indicate minimal searching for words and the ability to communicate ideas effectively, aligning with the B2 level criteria."
+    }
+  },
+  "interaction": {
+    "cefr_level": "B2",
+    "confidence_score": 0.9,
+    "reasoning": "The conversation showcases B2-level interaction skills, as both speakers demonstrate the ability to initiate discourse, manage turns effectively, and engage in discussions on familiar topics. Speaker 01 expresses a clear reason for learning English, and Speaker 00 responds appropriately, maintaining the flow of conversation.",
+    "key_features": [
+      "Effective turn-taking",
+      "Initiation of discourse",
+      "Engagement in familiar topics",
+      "Comprehension checks",
+      "Ability to express opinions and reasons"
+    ],
+    "summary": "The interaction exhibits strong B2-level skills with clear engagement and effective management of conversation.",
+    "raw_output": {
+      "cefr_level": "B2",
+      "confidence_score": 0.9,
+      "reasoning": "The conversation showcases B2-level interaction skills, as both speakers demonstrate the ability to initiate discourse, manage turns effectively, and engage in discussions on familiar topics. Speaker 01 expresses a clear reason for learning English, and Speaker 00 responds appropriately, maintaining the flow of conversation.",
+      "key_features": [
+        "Effective turn-taking",
+        "Initiation of discourse",
+        "Engagement in familiar topics",
+        "Comprehension checks",
+        "Ability to express opinions and reasons"
+      ],
+      "summary": "The interaction exhibits strong B2-level skills with clear engagement and effective management of conversation."
+    }
+  },
+  "fluency": {
+    "cefr_level": "B2",
+    "pause_frequency": 30.5495956310586,
+    "avg_pause_duration": 0.5084451925099938,
+    "words_per_minute": 94.8495063849419,
+    "reasoning": "The speaker exhibits a B2-level fluency characterized by the ability to produce language with a fairly even tempo and relatively few long pauses. While there are instances of hesitation and some grammatical inconsistencies, the overall communication is effective and understood. The speaker can express themselves on various topics, although they occasionally search for expressions and struggle with complex sentence structures.",
+    "fluency_features": []
+  }
+}

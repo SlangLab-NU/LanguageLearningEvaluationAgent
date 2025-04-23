@@ -1,0 +1,159 @@
+{
+  "grammar": {
+    "cefr_level": "B1",
+    "num_errors": 8,
+    "errors": [
+      {
+        "category": "1. Subject-Verb Agreement",
+        "location": "he just want me to talk",
+        "correction": "he just wants me to talk",
+        "explanation": "The subject 'he' should be followed by the singular verb form 'wants'."
+      },
+      {
+        "category": "2. Tense Usage",
+        "location": "when I was internal auditor",
+        "correction": "when I was an internal auditor",
+        "explanation": "The indefinite article 'an' is needed before 'internal auditor' for correct noun phrasing."
+      },
+      {
+        "category": "4. Preposition Usage",
+        "location": "tries to interview with a lot of people",
+        "correction": "tries to interview a lot of people",
+        "explanation": "The preposition 'with' is unnecessary here; 'interview' can directly take the object."
+      },
+      {
+        "category": "8. Countable/Uncountable Nouns",
+        "location": "we successfully retrieved about $200,000 money",
+        "correction": "we successfully retrieved about $200,000",
+        "explanation": "'Money' is an uncountable noun and does not need to be specified this way."
+      },
+      {
+        "category": "10. Passive Voice",
+        "location": "the properties he got from the policeman to the other guys",
+        "correction": "the properties he gave to the other guys from the policeman",
+        "explanation": "The sentence structure is awkward; changing it clarifies the action and the agent."
+      },
+      {
+        "category": "12. Word Order",
+        "location": "the case what?",
+        "correction": "what is the case?",
+        "explanation": "The phrase is improperly ordered and should follow standard question structure."
+      },
+      {
+        "category": "13. Relative Clauses",
+        "location": "the fruits on the table in the background is very concrete",
+        "correction": "the fruits on the table in the background are very concrete",
+        "explanation": "The subject 'fruits' is plural and requires the plural verb 'are'."
+      },
+      {
+        "category": "19. Negation",
+        "location": "I have to end the session here due to time limit",
+        "correction": "I have to end the session here due to the time limit",
+        "explanation": "The definite article 'the' is needed before 'time limit' to specify it."
+      }
+    ],
+    "reasoning": "Uses reasonably accurately a repertoire of frequently used 'routines' and patterns associated with more predictable situations.",
+    "raw_output": {
+      "errors": [
+        {
+          "category": "1. Subject-Verb Agreement",
+          "location": "he just want me to talk",
+          "correction": "he just wants me to talk",
+          "explanation": "The subject 'he' should be followed by the singular verb form 'wants'."
+        },
+        {
+          "category": "2. Tense Usage",
+          "location": "when I was internal auditor",
+          "correction": "when I was an internal auditor",
+          "explanation": "The indefinite article 'an' is needed before 'internal auditor' for correct noun phrasing."
+        },
+        {
+          "category": "4. Preposition Usage",
+          "location": "tries to interview with a lot of people",
+          "correction": "tries to interview a lot of people",
+          "explanation": "The preposition 'with' is unnecessary here; 'interview' can directly take the object."
+        },
+        {
+          "category": "8. Countable/Uncountable Nouns",
+          "location": "we successfully retrieved about $200,000 money",
+          "correction": "we successfully retrieved about $200,000",
+          "explanation": "'Money' is an uncountable noun and does not need to be specified this way."
+        },
+        {
+          "category": "10. Passive Voice",
+          "location": "the properties he got from the policeman to the other guys",
+          "correction": "the properties he gave to the other guys from the policeman",
+          "explanation": "The sentence structure is awkward; changing it clarifies the action and the agent."
+        },
+        {
+          "category": "12. Word Order",
+          "location": "the case what?",
+          "correction": "what is the case?",
+          "explanation": "The phrase is improperly ordered and should follow standard question structure."
+        },
+        {
+          "category": "13. Relative Clauses",
+          "location": "the fruits on the table in the background is very concrete",
+          "correction": "the fruits on the table in the background are very concrete",
+          "explanation": "The subject 'fruits' is plural and requires the plural verb 'are'."
+        },
+        {
+          "category": "19. Negation",
+          "location": "I have to end the session here due to time limit",
+          "correction": "I have to end the session here due to the time limit",
+          "explanation": "The definite article 'the' is needed before 'time limit' to specify it."
+        }
+      ],
+      "cefr_level": "B2",
+      "reasoning": "The speaker demonstrates a good command of English with some errors that do not hinder understanding. They use complex sentences but occasionally make grammatical mistakes, indicating a solid B2 level where they can express themselves clearly and effectively despite some inaccuracies."
+    }
+  },
+  "coherence": {
+    "cefr_level": "C1",
+    "reasoning": "The text demonstrates C1-level coherence as it features clear, smoothly-flowing, and well-structured speech. The speakers effectively use a variety of organizational patterns and connectors, allowing for a cohesive discussion on language learning and cultural background. The contributions are logically structured, with a clear progression of ideas and effective use of discourse markers, indicating a high level of control over the conversation.",
+    "raw_output": {
+      "cefr_level": "C1",
+      "reasoning": "The text demonstrates C1-level coherence as it features clear, smoothly-flowing, and well-structured speech. The speakers effectively use a variety of organizational patterns and connectors, allowing for a cohesive discussion on language learning and cultural background. The contributions are logically structured, with a clear progression of ideas and effective use of discourse markers, indicating a high level of control over the conversation."
+    }
+  },
+  "range": {
+    "cefr_level": "C1",
+    "reasoning": "The User demonstrates a good command of a broad range of language, effectively expressing their thoughts on various topics such as cultural background and memorable experiences. They utilize complex sentence structures and appropriate vocabulary while narrating detailed stories, indicating they can convey ideas clearly and coherently. Although there are occasional minor errors and hesitations, the overall fluency and ability to engage in conversation about diverse subjects reflect a C1 level proficiency.",
+    "raw_output": {
+      "cefr_level": "C1",
+      "reasoning": "The User demonstrates a good command of a broad range of language, effectively expressing their thoughts on various topics such as cultural background and memorable experiences. They utilize complex sentence structures and appropriate vocabulary while narrating detailed stories, indicating they can convey ideas clearly and coherently. Although there are occasional minor errors and hesitations, the overall fluency and ability to engage in conversation about diverse subjects reflect a C1 level proficiency."
+    }
+  },
+  "interaction": {
+    "cefr_level": "C1",
+    "confidence_score": 0.9,
+    "reasoning": "The conversation displays advanced interaction skills consistent with the C1 level. The speakers engage in complex discourse, effectively manage turn-taking, and relate their contributions to each other with good awareness of the conversation flow. The use of detailed vocabulary and sentence structures further supports this assessment.",
+    "key_features": [
+      "Selection of suitable phrases for discourse functions",
+      "Effective management of conversation flow",
+      "Ability to elaborate on topics with depth",
+      "Skillful handling of turn-taking and responses"
+    ],
+    "summary": "The interaction showcases strong C1-level skills with advanced discourse management and effective communication.",
+    "raw_output": {
+      "cefr_level": "C1",
+      "confidence_score": 0.9,
+      "reasoning": "The conversation displays advanced interaction skills consistent with the C1 level. The speakers engage in complex discourse, effectively manage turn-taking, and relate their contributions to each other with good awareness of the conversation flow. The use of detailed vocabulary and sentence structures further supports this assessment.",
+      "key_features": [
+        "Selection of suitable phrases for discourse functions",
+        "Effective management of conversation flow",
+        "Ability to elaborate on topics with depth",
+        "Skillful handling of turn-taking and responses"
+      ],
+      "summary": "The interaction showcases strong C1-level skills with advanced discourse management and effective communication."
+    }
+  },
+  "fluency": {
+    "cefr_level": "C1",
+    "pause_frequency": 24.88250320866117,
+    "avg_pause_duration": 0.45511111111111113,
+    "words_per_minute": 99.2922843081462,
+    "reasoning": "The speaker exhibits fluent and spontaneous language use with only occasional strategic pausing. They are able to narrate a detailed story coherently and utilize complex sentence structures effectively, which aligns with C1-level fluency. The speaking rate indicates a good flow, although there are some pauses for thought, which is typical of this level when handling conceptually demanding subjects.",
+    "fluency_features": []
+  }
+}

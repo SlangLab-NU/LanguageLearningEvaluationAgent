@@ -9,7 +9,7 @@
 		  "host": "localhost",
 		  "port": 5670
 		},
-		"justMyCode": true,
+		"justMyCode": false,
 		"postDebugTask": "terminatePythonProcesses"
 	  },
 	  {

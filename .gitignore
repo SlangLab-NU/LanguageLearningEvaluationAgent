@@ -173,8 +173,12 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-j
+j/
 data
 .cursorrules
 .cursorignore
 .env
+CEFR-SP-thl/
+.vscode/
+out/
+results/

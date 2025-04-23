@@ -16,4 +16,4 @@ module load ffmpeg/20190305
 source activate /work/van-speech-nlp/jindaznb/slamenv/
 which python
 
-python test_fluency_evaluator.py
+python test_overall_evaluator.py
