@@ -1,0 +1,123 @@
+{
+  "grammar": {
+    "cefr_level": "B2",
+    "num_errors": 5,
+    "errors": [
+      {
+        "category": "1. Subject-Verb Agreement",
+        "location": "Like majority people know, besides Beijing, it is probably the second famous city in China people know of.",
+        "correction": "Like the majority of people know, besides Beijing, it is probably the second most famous city in China that people know of.",
+        "explanation": "The noun 'majority' needs an article ('the') and 'most famous' is the correct superlative form."
+      },
+      {
+        "category": "10. Passive Voice",
+        "location": "if I want to settle down in a foreign country, I would be looking for a job, and the work environment is going to be, like, English will be the primary language, I would say.",
+        "correction": "if I want to settle down in a foreign country, I would be looking for a job, and the work environment will primarily be in English, I would say.",
+        "explanation": "The expression 'is going to be' can be simplified to 'will be' for clarity and conciseness."
+      },
+      {
+        "category": "4. Preposition Usage",
+        "location": "And also I learned English since like elementary school.",
+        "correction": "And also I have been learning English since elementary school.",
+        "explanation": "The correct phrase is 'since elementary school' without 'like', and the present perfect continuous tense 'have been learning' is more appropriate to indicate an ongoing action."
+      },
+      {
+        "category": "19. Negation",
+        "location": "I noticed a few grammatical errors, but this is quite normal when learning a new language.",
+        "correction": "I noticed a few grammatical errors, but they are quite normal when learning a new language.",
+        "explanation": "The sentence implies that 'this' refers to errors, which is incorrect; 'they' should be used to refer to the errors."
+      },
+      {
+        "category": "12. Word Order",
+        "location": "I think I was mentioned.",
+        "correction": "I think I mentioned it.",
+        "explanation": "The phrase is unclear as it is, and reordering improves clarity."
+      }
+    ],
+    "reasoning": "Shows a relatively high degree of grammatical control. Does not make errors which cause misunderstanding, and can correct most of his/her mistakes.",
+    "raw_output": {
+      "errors": [
+        {
+          "category": "1. Subject-Verb Agreement",
+          "location": "Like majority people know, besides Beijing, it is probably the second famous city in China people know of.",
+          "correction": "Like the majority of people know, besides Beijing, it is probably the second most famous city in China that people know of.",
+          "explanation": "The noun 'majority' needs an article ('the') and 'most famous' is the correct superlative form."
+        },
+        {
+          "category": "10. Passive Voice",
+          "location": "if I want to settle down in a foreign country, I would be looking for a job, and the work environment is going to be, like, English will be the primary language, I would say.",
+          "correction": "if I want to settle down in a foreign country, I would be looking for a job, and the work environment will primarily be in English, I would say.",
+          "explanation": "The expression 'is going to be' can be simplified to 'will be' for clarity and conciseness."
+        },
+        {
+          "category": "4. Preposition Usage",
+          "location": "And also I learned English since like elementary school.",
+          "correction": "And also I have been learning English since elementary school.",
+          "explanation": "The correct phrase is 'since elementary school' without 'like', and the present perfect continuous tense 'have been learning' is more appropriate to indicate an ongoing action."
+        },
+        {
+          "category": "19. Negation",
+          "location": "I noticed a few grammatical errors, but this is quite normal when learning a new language.",
+          "correction": "I noticed a few grammatical errors, but they are quite normal when learning a new language.",
+          "explanation": "The sentence implies that 'this' refers to errors, which is incorrect; 'they' should be used to refer to the errors."
+        },
+        {
+          "category": "12. Word Order",
+          "location": "I think I was mentioned.",
+          "correction": "I think I mentioned it.",
+          "explanation": "The phrase is unclear as it is, and reordering improves clarity."
+        }
+      ],
+      "cefr_level": "B2",
+      "reasoning": "The speaker demonstrates a good command of language and structure but makes some grammatical errors that indicate they are still developing their proficiency. They can communicate effectively, though there are occasional lapses in grammar and clarity."
+    }
+  },
+  "coherence": {
+    "cefr_level": "B1",
+    "reasoning": "The text reflects a B1-level coherence as it links shorter, discrete elements into a connected sequence. The speakers use basic connectors and phrases to create a linear flow of conversation, but there are instances of jumpiness and less sophisticated sentence structures. While the dialogue maintains basic coherence, it lacks the complexity and control expected at higher levels.",
+    "raw_output": {
+      "cefr_level": "B1",
+      "reasoning": "The text reflects a B1-level coherence as it links shorter, discrete elements into a connected sequence. The speakers use basic connectors and phrases to create a linear flow of conversation, but there are instances of jumpiness and less sophisticated sentence structures. While the dialogue maintains basic coherence, it lacks the complexity and control expected at higher levels."
+    }
+  },
+  "range": {
+    "cefr_level": "B2",
+    "reasoning": "The User has sufficient language range to give clear descriptions and express viewpoints on various topics, such as their cultural background and reasons for learning English. They use some complex sentence structures, although there are instances of grammatical errors and occasional awkward phrasing. Their ability to maintain the flow of conversation and respond thoughtfully indicates they can engage in discussions without significant hesitations, but they still have room for improvement in complexity and grammatical accuracy.",
+    "raw_output": {
+      "cefr_level": "B2",
+      "reasoning": "The User has sufficient language range to give clear descriptions and express viewpoints on various topics, such as their cultural background and reasons for learning English. They use some complex sentence structures, although there are instances of grammatical errors and occasional awkward phrasing. Their ability to maintain the flow of conversation and respond thoughtfully indicates they can engage in discussions without significant hesitations, but they still have room for improvement in complexity and grammatical accuracy."
+    }
+  },
+  "interaction": {
+    "cefr_level": "B2",
+    "confidence_score": 0.9,
+    "reasoning": "The conversation displays B2-level interaction skills, particularly in initiating and maintaining discourse effectively, confirming comprehension, and responding thoughtfully to questions. The speakers engage in a back-and-forth exchange that demonstrates good awareness of conversation flow and topic management. There are some grammatical errors and occasional hesitations, which suggest room for improvement but do not detract significantly from the overall ability to communicate effectively.",
+    "key_features": [
+      "Effective initiation and maintenance of discourse",
+      "Good turn-taking and responsiveness",
+      "Thoughtful and structured responses",
+      "Ability to handle familiar topics with confidence"
+    ],
+    "summary": "The interaction showcases strong B2-level skills with effective communication and good management of conversation dynamics.",
+    "raw_output": {
+      "cefr_level": "B2",
+      "confidence_score": 0.9,
+      "reasoning": "The conversation displays B2-level interaction skills, particularly in initiating and maintaining discourse effectively, confirming comprehension, and responding thoughtfully to questions. The speakers engage in a back-and-forth exchange that demonstrates good awareness of conversation flow and topic management. There are some grammatical errors and occasional hesitations, which suggest room for improvement but do not detract significantly from the overall ability to communicate effectively.",
+      "key_features": [
+        "Effective initiation and maintenance of discourse",
+        "Good turn-taking and responsiveness",
+        "Thoughtful and structured responses",
+        "Ability to handle familiar topics with confidence"
+      ],
+      "summary": "The interaction showcases strong B2-level skills with effective communication and good management of conversation dynamics."
+    }
+  },
+  "fluency": {
+    "cefr_level": "B1",
+    "pause_frequency": 18.07931570762053,
+    "avg_pause_duration": 0.4321907687806305,
+    "words_per_minute": 110.60399276351288,
+    "reasoning": "The text reflects B1-level fluency as it shows the ability to communicate comprehensibly despite evident pausing for grammatical and lexical planning. There are noticeable pauses and some grammatical errors, but the speaker manages to maintain a coherent flow of conversation, particularly in familiar contexts.",
+    "fluency_features": []
+  }
+}

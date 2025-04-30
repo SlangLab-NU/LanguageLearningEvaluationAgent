@@ -42,11 +42,14 @@ def evaluate_transcript(transcript_path: str) -> Dict[str, Any]:
     
     # Run evaluations
     results = {}
+    all_failed = True  # Track if all evaluations failed
+    
     for eval_name, evaluator in evaluators.items():
         try:
             # Run evaluation
             eval_results = evaluator.evaluate(transcript)
             results[eval_name] = eval_results
+            all_failed = False  # At least one evaluation succeeded
             
         except Exception as e:
             print(f"Error in {eval_name} evaluation: {str(e)}")
@@ -56,7 +59,7 @@ def evaluate_transcript(transcript_path: str) -> Dict[str, Any]:
                 "reasoning": "Evaluation failed"
             }
     
-    return results
+    return results, all_failed
 
 def main():
     # Get all transcript files
@@ -72,20 +75,25 @@ def main():
         # Get base filename without extension
         base_name = Path(transcript_path).stem.replace("_transcript", "")
         
-        # Check if results already exist
-        output_path = results_dir / f"{base_name}_result.txt"
-        if output_path.exists():
+        # Check if results already exist (both txt and json)
+        txt_output_path = results_dir / f"{base_name}_result.txt"
+        json_output_path = results_dir / f"{base_name}_result.json"
+        
+        if txt_output_path.exists() or json_output_path.exists():
             print(f"Skipping {transcript_path} - already processed")
             continue
             
         print(f"Processing {transcript_path}...")
         
         # Run evaluation
-        results = evaluate_transcript(transcript_path)
+        results, all_failed = evaluate_transcript(transcript_path)
         
-        # Save results
-        save_results(results, output_path)
-        print(f"Results saved to {output_path}")
+        # Only save results if not all evaluations failed
+        if not all_failed:
+            save_results(results, json_output_path)  # Save as JSON by default
+            print(f"Results saved to {json_output_path}")
+        else:
+            print(f"Skipping saving results for {transcript_path} - all evaluations failed")
 
 if __name__ == "__main__":
     main()

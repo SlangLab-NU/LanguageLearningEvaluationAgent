@@ -23,4 +23,4 @@ source activate /work/van-speech-nlp/jindaznb/slamenv/
 which python
 
 
-python fluency_evaluation.py
+python speech_analysis.py --input_dir ../data/recordings_wav_processed --output_dir ../evaluation/results
