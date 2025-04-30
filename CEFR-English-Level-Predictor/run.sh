@@ -22,4 +22,4 @@ module load ffmpeg/20190305
 source activate /work/van-speech-nlp/jindaznb/mmenv/
 which python
 
-python predict_cefr.py
+python predict_cefr_batch.py --input /work/van-speech-nlp/jindaznb/jslpnb/mllm_experiments/ellmat/data/recordings_wav_processed

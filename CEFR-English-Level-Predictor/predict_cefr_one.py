@@ -15,6 +15,4 @@ if __name__ == "__main__":
     text = "This is a sample text that I want to analyze."
     level, scores = predict_cefr_level(text)
     
-    print(f"Predicted CEFR Level: {level}")
-    print("\nScores per level:")
-    print(scores) 
+    print(f"CEFR Level: {level}") 

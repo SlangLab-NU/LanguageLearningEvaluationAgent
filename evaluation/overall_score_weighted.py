@@ -1,4 +1,6 @@
 import json
+import os
+import glob
 
 # CEFR level to numeric score mapping
 CEFR_TO_SCORE = {
@@ -78,10 +80,32 @@ def evaluate_overall(json_file_path):
             'error': f"Error processing evaluation: {str(e)}"
         }
 
+def evaluate_directory(directory_path):
+    """Calculate overall CEFR level for all JSON files in a directory."""
+    results = {}
+    json_files = glob.glob(os.path.join(directory_path, "*.json"))
+    
+    for json_file in json_files:
+        file_name = os.path.basename(json_file)
+        result = evaluate_overall(json_file)
+        results[file_name] = result
+    
+    return results
+
 if __name__ == "__main__":
-    # Example usage
     import sys
-    if len(sys.argv) > 1:
-        result = evaluate_overall(sys.argv[1])
+    if len(sys.argv) < 2:
+        print("Usage: python overall_score_weighted.py <path>")
+        print("Path can be either a JSON file or a directory containing JSON files")
+        sys.exit(1)
+        
+    path = sys.argv[1]
+    if os.path.isdir(path):
+        # Process directory
+        results = evaluate_directory(path)
+        print(json.dumps(results, indent=2))
+    else:
+        # Process single file
+        result = evaluate_overall(path)
         print(json.dumps(result, indent=2))
 

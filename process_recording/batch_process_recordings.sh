@@ -32,7 +32,8 @@ PYTHON_SCRIPT="${SCRIPT_DIR}/batch_process_recordings.py"
 mkdir -p "${OUTPUT_DIR}"
 
 # Run the Python script
-nohup python "${PYTHON_SCRIPT}" "${RECORDINGS_DIR}" \
+# nohup 
+python "${PYTHON_SCRIPT}" "${RECORDINGS_DIR}" \
     --output_dir "${OUTPUT_DIR}" \
     --model "large-v2" \
     --device "cuda" \
@@ -41,4 +42,6 @@ nohup python "${PYTHON_SCRIPT}" "${RECORDINGS_DIR}" \
     --min_speakers 2 \
     --max_speakers 2 \
     --hf_token "${HF_TOKEN}" \
-    --language "en" > output.log 2>&1 &
+    --language "en" \
+    --only_extract_transcript
+    #  > output.log 2>&1 &

@@ -17,4 +17,4 @@ source activate /work/van-speech-nlp/jindaznb/slamenv/
 which python
 
 
-python overall_score_weighted.py ../evaluation/results/P001-com.oculus.vrshell-20240807-093454_result.json
+python overall_score_weighted.py /work/van-speech-nlp/jindaznb/jslpnb/mllm_experiments/ellmat/evaluation/results

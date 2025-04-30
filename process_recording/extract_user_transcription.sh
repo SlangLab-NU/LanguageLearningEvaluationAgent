@@ -8,6 +8,12 @@
 #SBATCH --output=log/%j.output
 #SBATCH --error=log/%j.error
 
+export CUDA_VISIBLE_DEVICES=0
+export TOKENIZERS_PARALLELISM=false
+# export CUDA_LAUNCH_BLOCKING=1
+export OMP_NUM_THREADS=1
+export HYDRA_FULL_ERROR=1
+
 module purge
 module load discovery
 module load python/3.8.1 
@@ -17,4 +23,4 @@ source activate /work/van-speech-nlp/jindaznb/slamenv/
 which python
 
 
-python overall_score_weighted.py ../evaluation/results/P001-com.oculus.vrshell-20240807-093454_result.json
+python3 extract_user_transcripts.py /work/van-speech-nlp/jindaznb/jslpnb/mllm_experiments/ellmat/data/recordings_wav_processed
