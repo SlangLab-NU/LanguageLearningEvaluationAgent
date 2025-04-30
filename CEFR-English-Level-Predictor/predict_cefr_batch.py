@@ -12,45 +12,47 @@ def process_transcript_file(file_path, model):
     levels, _ = model.predict_decode([text])
     return levels[0]
 
-def process_folder(input_folder, output_folder):
-    # Initialize the model once for all predictions
-    model = Model("cefr_predictor/models/xgboost.joblib")
+def process_folder(input_folder, output_folder, use_plus_levels=False):
+    """Process all transcript files in a folder and save CEFR level predictions."""
+    # Initialize model
+    model = Model("cefr_predictor/models/xgboost.joblib", use_plus_levels=use_plus_levels)
     
-    # Create results directory if it doesn't exist
-    os.makedirs(output_folder, exist_ok=True)
+    # Create output folder if it doesn't exist
+    Path(output_folder).mkdir(parents=True, exist_ok=True)
     
-    # Store all results
-    all_results = {}
+    # Dictionary to store results
+    results = {}
     
-    # Process all transcript files
+    # Process each file in the input folder
     for file_name in os.listdir(input_folder):
         if file_name.endswith('_transcript_USER.txt'):
-            file_path = os.path.join(input_folder, file_name)
-            participant_id = file_name.split('-')[0]  # Extract P001, P002, etc.
+            # Extract participant ID from filename
+            participant_id = file_name.split('-')[0]
             
-            # Get predictions
-            level = process_transcript_file(file_path, model)
+            # Process file
+            file_path = os.path.join(input_folder, file_name)
+            cefr_level = process_transcript_file(file_path, model)
             
             # Store results
-            all_results[participant_id] = {
+            results[participant_id] = {
                 'file_name': file_name,
-                'cefr_level': level
+                'cefr_level': cefr_level
             }
     
     # Save results to JSON file
-    output_file = os.path.join(output_folder, 'cefr_scores.json')
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(all_results, f, indent=4)
+    output_json = os.path.join(output_folder, 'cefr_scores.json')
+    with open(output_json, 'w', encoding='utf-8') as f:
+        json.dump(results, f, indent=4)
     
-    # Also create a human-readable summary
-    summary_file = os.path.join(output_folder, 'cefr_summary.txt')
-    with open(summary_file, 'w', encoding='utf-8') as f:
-        f.write("CEFR Level Predictions Summary\n")
-        f.write("===========================\n\n")
-        for participant_id, result in sorted(all_results.items()):
+    # Generate summary text file
+    output_txt = os.path.join(output_folder, 'cefr_summary.txt')
+    with open(output_txt, 'w', encoding='utf-8') as f:
+        f.write('CEFR Level Predictions Summary\n')
+        f.write('===========================\n\n')
+        for participant_id, data in results.items():
             f.write(f"Participant: {participant_id}\n")
-            f.write(f"CEFR Level: {result['cefr_level']}\n")
-            f.write("-" * 50 + "\n\n")
+            f.write(f"CEFR Level: {data['cefr_level']}\n")
+            f.write('-' * 50 + '\n\n')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Predict CEFR levels from transcript files.')
@@ -58,6 +60,8 @@ if __name__ == "__main__":
                       help='Input folder containing transcript files')
     parser.add_argument('--output', '-o', type=str, default='results',
                       help='Output folder for results (default: results)')
+    parser.add_argument('--use-plus-levels', action='store_true',
+                      help='Use the original plus-level system instead of standard 6 levels')
     
     args = parser.parse_args()
-    process_folder(args.input, args.output) 
+    process_folder(args.input, args.output, use_plus_levels=args.use_plus_levels)
