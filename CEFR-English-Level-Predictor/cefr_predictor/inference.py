@@ -41,8 +41,8 @@ def round_to_standard_level(value):
 
 # Function to convert plus levels to standard levels
 def convert_to_standard_level(level):
+    """Convert plus levels to the next standard level (e.g., A1+ -> A2)"""
     if "+" in level:
-        base_level = level[:-1]
         next_level_map = {
             "A1": "A2",
             "A2": "B1",
@@ -51,10 +51,8 @@ def convert_to_standard_level(level):
             "C1": "C2",
             "C2": "C2"  # C2+ remains C2
         }
-        # If confidence in + level is high, round up to next level
-        if np.random.random() > 0.5:  # You can adjust this threshold
-            return next_level_map[base_level]
-        return base_level
+        base_level = level[:-1]  # Remove the '+' suffix
+        return next_level_map[base_level]
     return level
 
 class Model:

@@ -25,7 +25,8 @@ def process_folder(input_folder, output_folder, use_plus_levels=False):
     
     # Process each file in the input folder
     for file_name in os.listdir(input_folder):
-        if file_name.endswith('_transcript_USER.txt'):
+        if file_name.endswith('_transcript_processed.txt'):
+            print(f"processing {file_name}")
             # Extract participant ID from filename
             participant_id = file_name.split('-')[0]
             
