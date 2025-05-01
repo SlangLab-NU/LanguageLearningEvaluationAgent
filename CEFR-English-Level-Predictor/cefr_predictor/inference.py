@@ -4,7 +4,9 @@ from joblib import load
 
 MIN_CONFIDENCE = 0.7
 K = 2
-LABELS = {
+
+# Original LABELS with + levels
+LABELS_WITH_PLUS = {
     0.0: "A1",
     0.5: "A1+",
     1.0: "A2",
@@ -19,10 +21,44 @@ LABELS = {
     5.5: "C2+",
 }
 
+# Standard 6-level CEFR system
+LABELS = {
+    0.0: "A1",
+    1.0: "A2",
+    2.0: "B1",
+    3.0: "B2",
+    4.0: "C1",
+    5.0: "C2",
+}
+
+def round_to_standard_level(value):
+    """Round a numeric value to the nearest standard CEFR level."""
+    # Ensure the value is within bounds
+    value = max(0.0, min(5.0, value))
+    # Round to nearest whole number
+    rounded = round(value)
+    return float(rounded)
+
+# Function to convert plus levels to standard levels
+def convert_to_standard_level(level):
+    """Convert plus levels to the next standard level (e.g., A1+ -> A2)"""
+    if "+" in level:
+        next_level_map = {
+            "A1": "A2",
+            "A2": "B1",
+            "B1": "B2",
+            "B2": "C1",
+            "C1": "C2",
+            "C2": "C2"  # C2+ remains C2
+        }
+        base_level = level[:-1]  # Remove the '+' suffix
+        return next_level_map[base_level]
+    return level
 
 class Model:
-    def __init__(self, model_path):
+    def __init__(self, model_path, use_plus_levels=False):
         self.model = load(model_path)
+        self.use_plus_levels = use_plus_levels
 
     def predict(self, data):
         probas = self.model.predict_proba(data)
@@ -32,7 +68,13 @@ class Model:
 
     def predict_decode(self, data):
         preds, probas = self.predict(data)
-        preds = [self.decode_label(p) for p in preds]
+        if self.use_plus_levels:
+            preds = [LABELS_WITH_PLUS[p] for p in preds]
+        else:
+            # Round to nearest standard level first
+            preds = [round_to_standard_level(p) for p in preds]
+            # Then convert to CEFR label
+            preds = [LABELS[p] for p in preds]
         return preds, probas
 
     def _get_pred(self, probabilities):
@@ -42,7 +84,10 @@ class Model:
             return probabilities.argmax()
 
     def decode_label(self, encoded_label):
-        return LABELS[encoded_label]
+        if self.use_plus_levels:
+            return LABELS_WITH_PLUS[encoded_label]
+        rounded = round_to_standard_level(encoded_label)
+        return LABELS[rounded]
 
     def _label_probabilities(self, probas):
         labels = ["A1", "A2", "B1", "B2", "C1", "C2"]
